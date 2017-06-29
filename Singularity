@@ -28,8 +28,10 @@ From: centos
     wget https://raw.githubusercontent.com/hpcugent/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py
     PREFIX=/opt/apps/easybuild
     chmod 777 /opt /opt/apps 
-    useradd singularity
-    runuser singularity -c "python /bootstrap_eb.py $PREFIX"
+    useradd easybuild
+    mkdir /easybuild
+    chown easybuild:easybuild /easybuild
+    runuser easybuild -c "python /bootstrap_eb.py $PREFIX"
     chmod 755 /opt /opt/apps
 
 %environment

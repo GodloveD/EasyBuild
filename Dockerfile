@@ -28,8 +28,10 @@ RUN cd / && \
     wget https://raw.githubusercontent.com/hpcugent/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py && \
      PREFIX=/opt/apps/easybuild && \
      chmod 777 /opt /opt/apps && \
-     useradd singularity && \
-     runuser singularity -c "source /etc/profile.d/profile.sh && python /bootstrap_eb.py $PREFIX" && \
+     useradd easybuild && \
+     mkdir /easybuild && \
+     chown easybuild:easybuild /easybuild && \
+     runuser easybuild -c "source /etc/profile.d/profile.sh && python /bootstrap_eb.py $PREFIX" && \
      chmod 755 /opt /opt/apps
 
 # set env
