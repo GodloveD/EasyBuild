@@ -1,4 +1,4 @@
-FROM centos7:latest
+FROM centos:latest
 
 # install dependencies 
 RUN yum update -y && \
