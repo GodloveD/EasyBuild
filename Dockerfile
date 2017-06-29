@@ -1,7 +1,7 @@
-FROM: centos7:latest
+FROM centos7:latest
 
 # install dependencies 
-RUN: yum update -y && \
+RUN yum update -y && \
      yum install -y wget && \
      wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm && \
      rpm -Uvh epel-release-7-9.noarch.rpm && \
@@ -13,7 +13,7 @@ RUN: yum update -y && \
      pip install setuptools GitPython python-graph-dot graphviz
 
 # install Lmod
-RUN: wget https://downloads.sourceforge.net/project/lmod/Lmod-7.5.tar.bz2 && \
+RUN wget https://downloads.sourceforge.net/project/lmod/Lmod-7.5.tar.bz2 && \
      tar xvf Lmod-7.5.tar.bz2 && \
      cd Lmod-7.5 && \
      ./configure --prefix=/opt/apps && \
@@ -24,7 +24,7 @@ RUN: wget https://downloads.sourceforge.net/project/lmod/Lmod-7.5.tar.bz2 && \
      source /etc/profile.d/profile.sh
 
 # install EasyBuild
-RUN: cd / && \
+RUN cd / && \
     wget https://raw.githubusercontent.com/hpcugent/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py && \
      PREFIX=/opt/apps/easybuild && \
      chmod 777 /opt /opt/apps && \
@@ -34,4 +34,4 @@ RUN: cd / && \
 
 # set env
 # must still source /etc/profile at start
-ENV: MODULEPATH /opt/apps/easybuild/modules/all:${MODULEPATH}
+ENV MODULEPATH /opt/apps/easybuild/modules/all:${MODULEPATH}
