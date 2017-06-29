@@ -10,8 +10,6 @@ From: centos
     yum update -y                                                            
     yum install -y unzip bzip2 patch mlocate tcl tcl-devel lua lua-posix lua-filesystem lua-devel python-pip libibverbs-dev libibverbs-devel which
     yum groupinstall -y 'Development Tools'
-    # wget http://mirror.centos.org/centos/7/os/x86_64/Packages/lua-devel-5.1.4-15.el7.x86_64.rpm
-    # rpm -Uvh lua-devel-5.1.4-15.el7.x86_64.rpm
     pip install setuptools GitPython python-graph-dot graphviz
                                                                                     
     # install lmod                                                                  
@@ -22,7 +20,6 @@ From: centos
     make install
     make install
     cp /opt/apps/lmod/lmod/init/profile /etc/profile.d/profile.sh
-    cp /opt/apps/lmod/lmod/init/cshrc /etc/profile.d/cshrc.sh
     cd
     source /etc/profile.d/profile.sh
     
@@ -34,3 +31,7 @@ From: centos
     useradd singularity
     runuser singularity -c "python /bootstrap_eb.py $PREFIX"
     chmod 755 /opt /opt/apps
+
+%environment
+    export MODULEPATH=/opt/apps/easybuild/modules/all:$MODULEPATH
+    . /etc/profile
