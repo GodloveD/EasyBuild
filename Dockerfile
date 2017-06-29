@@ -29,7 +29,7 @@ RUN cd / && \
      PREFIX=/opt/apps/easybuild && \
      chmod 777 /opt /opt/apps && \
      useradd singularity && \
-     runuser singularity -c "python /bootstrap_eb.py $PREFIX" && \
+     runuser singularity -c "source /etc/profile.d/profile.sh && python /bootstrap_eb.py $PREFIX" && \
      chmod 755 /opt /opt/apps
 
 # set env
