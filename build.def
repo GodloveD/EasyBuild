@@ -1,0 +1,17 @@
+Bootstrap: docker
+From: godlovedc/easybuild
+
+%setup
+    cp *.eb $SINGULARITY_ROOTFS/
+
+%post
+    su - easybuild 
+    source /etc/profile
+    export MODULEPATH=/opt/apps/easybuild/modules/all:$MODULEPATH
+    module load EasyBuild
+    eb --prefix=/easybuild /*.eb
+    exit
+    for path in $(ls /easybuild/software/*/*/bin/*); do 
+        bin=$(basename ${path})
+        ln -s ${path} /usr/local/bin/${bin}
+    done
