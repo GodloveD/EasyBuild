@@ -9,9 +9,8 @@ From: godlovedc/easybuild
     source /etc/profile
     export MODULEPATH=/opt/apps/easybuild/modules/all:$MODULEPATH
     module load EasyBuild
-    eb --prefix=/easybuild /*.eb
+    eb --prefix=/easybuild --robot=$PWD /*.eb
     exit
-    for path in $(ls /easybuild/software/*/*/bin/*); do 
-        bin=$(basename ${path})
-        ln -s ${path} /usr/local/bin/${bin}
-    done
+
+%environment
+    export MODULEPATH=/easybuild/modules/all:$MODULEPATH
